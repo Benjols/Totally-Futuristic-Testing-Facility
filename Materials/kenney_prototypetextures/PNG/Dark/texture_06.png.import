@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/UFO_nmap.jpg-847da5e81ce439a936bf3195c54838a3.stex"
+path="res://.import/texture_06.png-fe6c2757237e4a14d22ed2d6ee0b630a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imports/Rigged_UFO_gltf/UFO_nmap.jpg"
-dest_files=[ "res://.import/UFO_nmap.jpg-847da5e81ce439a936bf3195c54838a3.stex" ]
+source_file="res://Materials/kenney_prototypetextures/PNG/Dark/texture_06.png"
+dest_files=[ "res://.import/texture_06.png-fe6c2757237e4a14d22ed2d6ee0b630a.stex" ]
 
 [params]
 

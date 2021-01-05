@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/UFO_metalness-UFO_rough.jpg-af03f06ea076b3e4b1b9f2cf5e791cf5.stex"
+path="res://.import/texture_09.png-ed504335bcc180fd21775de48382eb13.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imports/Rigged_UFO_gltf/UFO_metalness-UFO_rough.jpg"
-dest_files=[ "res://.import/UFO_metalness-UFO_rough.jpg-af03f06ea076b3e4b1b9f2cf5e791cf5.stex" ]
+source_file="res://Materials/kenney_prototypetextures/PNG/Dark/texture_09.png"
+dest_files=[ "res://.import/texture_09.png-ed504335bcc180fd21775de48382eb13.stex" ]
 
 [params]
 
