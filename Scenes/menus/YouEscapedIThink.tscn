@@ -1,0 +1,174 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Materials/base levels/testing_mat.tres" type="Material" id=2]
+[ext_resource path="res://addons/SIsilicon.3d.text/label_3d.gd" type="Script" id=3]
+[ext_resource path="res://Fonts/big-space-font/Title Screen.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Scripts/menus/YouEscapedIThink.gd" type="Script" id=5]
+[ext_resource path="res://themes/WE.tres" type="Environment" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "text"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -32, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 4, 7 ), Vector3( 0, 5, 7 ) ]
+}
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 5 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 7 )
+
+[node name="go down" type="Spatial" parent="Camera"]
+
+[node name="Label3D" type="Spatial" parent="Camera/go down"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, -10 )
+script = ExtResource( 3 )
+text = "Congrats you win!"
+text_size = 3.0
+font = ExtResource( 4 )
+align = 2
+color = Color( 0.6, 0.6, 0.6, 1 )
+metallic = 0.0
+roughness = 0.5
+emission_color = Color( 1, 1, 1, 1 )
+emission_strength = 0.0
+extrude = 0.0
+max_steps = 256
+step_size = 1.0
+
+[node name="Label3D2" type="Spatial" parent="Camera/go down"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23, -10 )
+script = ExtResource( 3 )
+text = "hueh hueh hueh...
+Or you think you did"
+text_size = 3.0
+font = ExtResource( 4 )
+align = 2
+color = Color( 0.6, 0.6, 0.6, 1 )
+metallic = 0.0
+roughness = 0.5
+emission_color = Color( 1, 1, 1, 1 )
+emission_strength = 0.0
+extrude = 0.0
+max_steps = 256
+step_size = 1.0
+
+[node name="Label3D3" type="Spatial" parent="Camera/go down"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31, -10 )
+script = ExtResource( 3 )
+text = "Mercaman
+Made by"
+text_size = 3.0
+font = ExtResource( 4 )
+align = 2
+color = Color( 0.6, 0.6, 0.6, 1 )
+metallic = 0.0
+roughness = 0.5
+emission_color = Color( 1, 1, 1, 1 )
+emission_strength = 0.0
+extrude = 0.0
+max_steps = 256
+step_size = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/go down"]
+autoplay = "text"
+anims/text = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="Camera"]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[node name="Control" type="Control" parent="Camera"]
+visible = false
+margin_right = 1920.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="stats" type="Button" parent="Camera/Control"]
+anchor_left = 0.840104
+anchor_top = 0.95
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 4 )
+text = "Check your stats!"
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Stats" type="AcceptDialog" parent="Camera/Control/stats"]
+margin_left = -1613.0
+margin_top = -1026.0
+margin_right = -1530.0
+margin_bottom = -968.0
+window_title = "Stats!"
+
+[node name="thankyous" type="Button" parent="Camera/Control"]
+anchor_right = 0.44375
+anchor_bottom = 0.0916667
+margin_right = -46.0
+custom_fonts/font = ExtResource( 4 )
+text = "Click here to see who helped me during this project"
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="thanks" type="AcceptDialog" parent="Camera/Control/thankyous"]
+margin_right = 83.0
+margin_bottom = 58.0
+window_title = "Thank you to..."
+dialog_text = "-The youtube channel Garbaj, helped me start with the Godot game engine.
+-The people on Discord, like Benjols who helped me with any questions I had
+-Redefine Gamedev for making my first game jam fun
+-and YOU for playing and finishing my game!"
+
+[node name="OmniLight" type="OmniLight" parent="Camera"]
+omni_range = 48.0
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
+width = 34.0
+height = 27.6469
+material = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "endgame"
+anims/endgame = SubResource( 2 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 7 )
+[connection signal="timeout" from="Camera/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="button_up" from="Camera/Control/stats" to="." method="_on_stats_button_up"]
+[connection signal="button_up" from="Camera/Control/thankyous" to="." method="_on_thankyous_button_up"]
