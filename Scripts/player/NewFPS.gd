@@ -29,11 +29,13 @@ onready var head = $Head
 onready var ground_check = $GroundCheck
 onready var pointer = $Head/Camera/pointer
 onready var pauseMenu = $Head/Camera/Control/pauseMenu
-onready var extraLevel = $Head/Camera/ExtraLevelCheck
 onready var speedrun = $Head/Camera/Control/RichTextLabel
 onready var hand = $Head/hand
 onready var handloc = $Head/handLoc
 onready var saver = $"/root/GameSaving"
+
+onready var wallSprite = preload("res://Scenes/Player/abilities/WallSprite.tscn")
+onready var biggerWallSprite = preload("res://Scenes/Player/abilities/BiggerWallSprite.tscn")
 
 func _ready():
 	#Keeps mouse inside game window, so u have full range of motion when testing out game controller
@@ -104,26 +106,17 @@ func _physics_process(delta):
 		GROUND_STATE.TOUCHDOWN:
 			player_state = GROUND_STATE.GROUNDED
 	
+# warning-ignore:return_value_discarded
 	move_and_slide_with_snap(gravity_vec,Vector3.DOWN, Vector3.UP)
 	
-	if Input.is_action_just_pressed("hand"):
-		if pointer.is_colliding():
-			if pointer.get_collider().is_in_group("escape"):
-				var temp_arr = get_tree().get_nodes_in_group("built")
-				for x in temp_arr.size():
-					temp_arr[x].queue_free()
-				get_tree().change_scene("res://Scenes/menus/YouEscapedIThink.tscn")
-	if extraLevel.is_colliding():
-		if extraLevel.get_collider().is_in_group("ExtraLevel"):
-			var temp_arr = get_tree().get_nodes_in_group("built")
-			for x in temp_arr.size():
-				temp_arr[x].queue_free()
-			get_tree().change_scene("res://Scenes/Levels/Extra scene.tscn")
-
+				
 func _process(delta):
+	#Weapon Sway
 	hand.global_transform.origin = handloc.global_transform.origin
 	hand.rotation.y = lerp_angle(hand.rotation.y, rotation.y, SWAY * delta)
 	hand.rotation.x = lerp_angle(hand.rotation.x, head.rotation.x, SWAY * delta)
+	
+	blockPlacer()
 	
 	if Input.is_action_just_pressed("escape"):
 		if paused == 0:
@@ -163,7 +156,46 @@ func _on_Pause_button_up():
 	paused = 0
 
 func _on_MainMenu_button_up():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/menus/Title Screen.tscn")
 
 func _on_Timer_timeout():
 	saver.ms += 1
+
+func blockPlacer():
+	if saver.buildState == 0:
+		if Input.is_action_just_pressed("wall"):
+			saver.buildState = 1
+		if Input.is_action_just_pressed("biggerWall"):
+			saver.buildState = 2
+	elif saver.buildState == 1:
+		if !pointer.get_child(0):
+			var ws = wallSprite.instance()
+			pointer.add_child(ws)
+		if Input.is_action_just_pressed("wall"):
+			pointer.get_child(0).queue_free()
+			saver.buildState = 0
+		if Input.is_action_just_pressed("biggerWall"):
+			pointer.get_child(0).queue_free()
+			saver.buildState = 2
+		if Input.is_action_just_pressed("place"):
+			place()
+	elif  saver.buildState == 2:
+		if !pointer.get_child(0):
+			var bWS = biggerWallSprite.instance()
+			pointer.add_child(bWS)
+		if Input.is_action_just_pressed("wall"):
+			pointer.get_child(0).queue_free()
+			saver.buildState = 1
+		if Input.is_action_just_pressed("biggerWall"):
+			pointer.get_child(0).queue_free()
+			saver.buildState = 0
+		if Input.is_action_just_pressed("place"):
+			place()
+
+func place():
+	pointer.get_child(0).queue_free()
+	saver.buildState = 0
+	saver.counter += 1
+
+

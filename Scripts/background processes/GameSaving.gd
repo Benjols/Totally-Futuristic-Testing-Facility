@@ -15,3 +15,4 @@ var settings = {
 	}
 
 var buildState = 0
+var blockRotation

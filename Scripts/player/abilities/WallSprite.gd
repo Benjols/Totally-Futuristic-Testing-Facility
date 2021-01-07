@@ -7,7 +7,6 @@ onready var wall = preload("res://Scenes/Player/abilities/Wall.tscn")
 
 func _ready():
 	set_as_toplevel(true)
-	global_transform.origin = raycast.get_collision_point()
 
 func _input(_event):
 	if Input.is_action_just_pressed("place"):
