@@ -52,7 +52,7 @@ tracks/1/keys = {
 transform = Transform( -0.904273, 0, 0.426955, 0, 1, 0, -0.426955, 0, -0.904273, 0, 0.970436, 0 )
 
 [node name="Plane" type="MeshInstance" parent="."]
-transform = Transform( -0.914875, 0, -0.403737, 0, 1, 0, 0.403737, 0, -0.914875, 0, 0.973663, 0 )
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = null
 

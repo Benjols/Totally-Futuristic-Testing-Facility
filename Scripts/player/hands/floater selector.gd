@@ -7,7 +7,7 @@ onready var saver = $"/root/GameSaving"
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	if saver.buildState == 0:
 		setbuilder(false, false)
 	elif saver.buildState == 1:

@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Materials/base levels/testing_mat.tres" type="Material" id=1]
 [ext_resource path="res://Fonts/big-space-font/BigSpace-rPKx.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Scripts/menus/Title Screen.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/menus/TitleScreen/Title Screen.gd" type="Script" id=3]
 [ext_resource path="res://Fonts/big-space-font/Title Screen.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Scenes/Levels/cosmetics/floatie thingys.tscn" type="PackedScene" id=5]
 [ext_resource path="res://themes/WE.tres" type="Environment" id=6]
+[ext_resource path="res://Scripts/menus/TitleScreen/GraphicsSettings.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Misc/fps counter.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
@@ -16,10 +19,6 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 70
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 100
 font_data = ExtResource( 2 )
 
 [sub_resource type="Animation" id=5]
@@ -115,6 +114,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector3( 0, -1, 28 ), Vector3( 0, 1, 28 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../octahedron:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 17, -1, 30 ), Vector3( 17, 1, 30 ) ]
+}
 
 [node name="Title Screen" type="Spatial"]
 script = ExtResource( 3 )
@@ -139,7 +150,7 @@ height = 100.0
 material = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 28 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 28 )
 fov = 30.0
 
 [node name="Control 1" type="Control" parent="Camera"]
@@ -192,16 +203,19 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Camera/Control 1"]
-margin_left = 552.967
-margin_top = 168.889
-margin_right = 1371.97
-margin_bottom = 411.889
+margin_left = 552.0
+margin_top = 168.0
+margin_right = 1371.0
+margin_bottom = 411.0
 custom_fonts/font = SubResource( 2 )
 text = "Totally Futuristic
 Test Facility!"
 align = 1
 valign = 1
 uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Controls menu" type="Control" parent="Camera"]
 margin_left = -1920.0
@@ -231,22 +245,61 @@ __meta__ = {
 margin_left = 1920.0
 margin_right = 3840.0
 margin_bottom = 1080.0
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Camera/Graphics Settings"]
-anchor_right = 0.559
-margin_top = 332.978
-margin_right = 846.72
-margin_bottom = 1412.98
-rect_rotation = -15.5
-custom_fonts/font = SubResource( 4 )
-text = "Haha, you thought!
-Only people with good PC's allowed!
-go play board games or sumthin"
-align = 1
-valign = 1
+[node name="GQuality" type="Button" parent="Camera/Graphics Settings"]
+margin_left = 400.0
+margin_top = 340.0
+margin_right = 782.0
+margin_bottom = 440.0
+custom_fonts/font = ExtResource( 4 )
+text = "Graphics Quality: High"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSync" type="Button" parent="Camera/Graphics Settings"]
+margin_left = 400.0
+margin_top = 440.0
+margin_right = 782.0
+margin_bottom = 540.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0.631373, 0.631373, 0.631373, 1 )
+text = "VSync"
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FS" type="Button" parent="Camera/Graphics Settings"]
+margin_left = 400.0
+margin_top = 540.0
+margin_right = 782.0
+margin_bottom = 640.0
+custom_fonts/font = ExtResource( 4 )
+text = "Fullscreen"
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BorderLess" type="Button" parent="Camera/Graphics Settings"]
+margin_left = 400.0
+margin_top = 640.0
+margin_right = 782.0
+margin_bottom = 740.0
+custom_fonts/font = ExtResource( 4 )
+text = "Borderless"
+flat = true
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -259,14 +312,25 @@ anims/Graphics = SubResource( 6 )
 autoplay = "Home"
 anims/Home = SubResource( 7 )
 
-[node name="OmniLight" type="OmniLight" parent="Camera"]
+[node name="fps counter" parent="Camera" instance=ExtResource( 8 )]
+position = Vector2( 40, 52.9167 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 6 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 31 )
 light_indirect_energy = 0.31
 shadow_enabled = true
 omni_range = 155.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 6 )
+[node name="octahedron" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 1, 30 )
 [connection signal="button_up" from="Camera/Control 1/Graphics Settings" to="." method="_on_Graphics_Settings_button_up"]
 [connection signal="button_up" from="Camera/Control 1/Play" to="." method="_on_Play_button_up"]
 [connection signal="confirmed" from="Camera/Control 1/Play/ConfirmLeave" to="." method="_on_ConfirmLeave_confirmed"]
 [connection signal="button_up" from="Camera/Control 1/Controls" to="." method="_on_Controls_button_up"]
+[connection signal="button_up" from="Camera/Graphics Settings/GQuality" to="Camera/Graphics Settings" method="_on_GQuality_button_up"]
+[connection signal="button_up" from="Camera/Graphics Settings/VSync" to="Camera/Graphics Settings" method="_on_VSync_button_up"]
+[connection signal="button_up" from="Camera/Graphics Settings/FS" to="Camera/Graphics Settings" method="_on_FS_button_up"]
+[connection signal="button_up" from="Camera/Graphics Settings/BorderLess" to="Camera/Graphics Settings" method="_on_BorderLess_button_up"]

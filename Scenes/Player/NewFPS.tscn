@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/player/NewFPS.gd" type="Script" id=1]
 [ext_resource path="res://themes/WE.tres" type="Environment" id=2]
+[ext_resource path="res://Scenes/Misc/fps counter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Materials/player/UI/Crosshair.png" type="Texture" id=4]
 [ext_resource path="res://Fonts/big-space-font/Title Screen.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Materials/kenney_prototypetextures/PNG/Dark/texture_12.png" type="Texture" id=6]
@@ -94,6 +95,9 @@ custom_fonts/normal_font = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="fps counter" parent="Head/Camera" instance=ExtResource( 3 )]
+position = Vector2( 1744.91, 42 )
 
 [node name="handLoc" type="Spatial" parent="Head"]
 transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.363, -0.991, -1.819 )

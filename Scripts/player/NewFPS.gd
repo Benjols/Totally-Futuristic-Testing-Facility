@@ -12,7 +12,7 @@ var mouse_sensitivity = 0.1
 
 var paused = 0
 
-const SWAY = 40
+const SWAY = 35
 
 enum GROUND_STATE {
 	GROUNDED,
