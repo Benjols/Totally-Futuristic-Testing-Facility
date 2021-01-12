@@ -32,7 +32,6 @@ func _process(_delta):
 		ProjectSettings.set_setting("rendering/quality/subsurface_scattering/quality", 2)
 		ProjectSettings.set_setting("rendering/quality/subsurface_scattering/follow_surface", true)
 		ProjectSettings.set_setting("rendering/quality/voxel_cone_tracing/high_quality", true)
-		ProjectSettings.save()
 	elif quality == "med":
 		ProjectSettings.set_setting("rendering/quality/filters/anisotropic_filter_level", 8)
 		ProjectSettings.set_setting("rendering/quality/filters/msaa", 4)
@@ -40,7 +39,6 @@ func _process(_delta):
 		ProjectSettings.set_setting("rendering/quality/subsurface_scattering/quality", 2)
 		ProjectSettings.set_setting("rendering/quality/subsurface_scattering/follow_surface", false)
 		ProjectSettings.set_setting("rendering/quality/voxel_cone_tracing/high_quality", false)
-		ProjectSettings.save()
 	elif quality == "low":
 		ProjectSettings.set_setting("rendering/quality/filters/anisotropic_filter_level", 4)
 		ProjectSettings.set_setting("rendering/quality/filters/msaa", 2)
@@ -48,4 +46,3 @@ func _process(_delta):
 		ProjectSettings.set_setting("rendering/quality/subsurface_scattering/quality", 1)
 		ProjectSettings.set_setting("rendering/quality/subsurface_scattering/follow_surface", false)
 		ProjectSettings.set_setting("rendering/quality/voxel_cone_tracing/high_quality", false)
-		ProjectSettings.save()

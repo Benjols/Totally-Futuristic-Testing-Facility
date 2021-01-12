@@ -2,9 +2,8 @@ extends Spatial
 
 var state = 1
 
-onready var anim = $Camera/AnimationPlayer
 onready var saver = get_node("/root/GameSaving")
-onready var confirmLeave = $"Camera/Control 1/Play/ConfirmLeave"
+onready var confirmLeave = $"Camera/Main/ConfirmLeave"
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -21,20 +20,16 @@ func _on_Play_button_up():
 	get_tree().change_scene("res://Scenes/Levels/testLevel.tscn")
 
 func _on_Graphics_Settings_button_up():
-	anim.play("Graphics")
 	state = 2
 
 func _on_Controls_button_up():
-	anim.play("Controls")
 	state = 0
 
 func _process(_delta):
 	if Input.is_action_just_pressed("escape"):
 		if state == 0:
-			anim.play_backwards("Controls")
 			state = 1
 		elif state == 2:
-			anim.play_backwards("Graphics")
 			state = 1
 		elif state == 1:
 			confirmLeave.popup_centered()

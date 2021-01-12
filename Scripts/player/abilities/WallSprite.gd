@@ -17,6 +17,7 @@ func _input(_event):
 	if Input.is_action_just_pressed("biggerWall") or Input.is_action_just_pressed("wall_ability") or Input.is_action_just_pressed("wall"):
 		queue_free()
 
-func _process(_delta):
+func _process(delta):
 	global_transform.origin = raycast.get_collision_point()
-	rotation = raycast_owner.rotation
+	#look_at(to_global(raycast.get_collision_normal()), Vector3.UP)
+	rotation = raycast.get_collision_normal()

@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/player/NewFPS.gd" type="Script" id=1]
-[ext_resource path="res://themes/WE.tres" type="Environment" id=2]
 [ext_resource path="res://Scenes/Misc/fps counter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Materials/player/UI/Crosshair.png" type="Texture" id=4]
 [ext_resource path="res://Fonts/big-space-font/Title Screen.tres" type="DynamicFont" id=5]
@@ -116,9 +115,6 @@ cast_to = Vector3( 0, -1.5, 0 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
 shape = SubResource( 1 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

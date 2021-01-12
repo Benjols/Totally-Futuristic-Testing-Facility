@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Totally Futuristic Testing Facility"
-run/main_scene="res://Scenes/menus/Title Screen.tscn"
+run/main_scene="res://Scenes/menus/Title Screen/Title Screen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
