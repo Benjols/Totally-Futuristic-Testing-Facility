@@ -19,5 +19,7 @@ func _input(_event):
 
 func _process(delta):
 	global_transform.origin = raycast.get_collision_point()
-	#look_at(to_global(raycast.get_collision_normal()), Vector3.UP)
-	rotation = raycast.get_collision_normal()
+	var originalRot = Quat(transform.basis.get_rotation_quat())
+	var angledRot = Quat(raycast.get_collision_normal())
+	var c = originalRot.slerp(angledRot, 1)
+	transform.basis = Basis(c)
