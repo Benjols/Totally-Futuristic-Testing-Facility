@@ -7,4 +7,4 @@ var m = 0
 var failures = 0
 
 var buildState = 0
-var blockRotation
+var buildable = true

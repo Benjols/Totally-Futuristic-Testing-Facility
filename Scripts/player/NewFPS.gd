@@ -151,6 +151,8 @@ func _process(delta):
 		saver.s = 0
 		
 	speedrun.set_text(str(saver.m)+":"+str(saver.s)+":"+str(saver.ms))
+	
+	pointer.get_collision_normal()
 
 func _on_Pause_button_up():
 	paused = 0
@@ -178,7 +180,7 @@ func blockPlacer():
 		if Input.is_action_just_pressed("biggerWall"):
 			pointer.get_child(0).queue_free()
 			saver.buildState = 2
-		if Input.is_action_just_pressed("place"):
+		if Input.is_action_just_pressed("place") and saver.buildable:
 			place()
 	elif  saver.buildState == 2:
 		if !pointer.get_child(0):
@@ -190,7 +192,7 @@ func blockPlacer():
 		if Input.is_action_just_pressed("biggerWall"):
 			pointer.get_child(0).queue_free()
 			saver.buildState = 0
-		if Input.is_action_just_pressed("place"):
+		if Input.is_action_just_pressed("place") and saver.buildable:
 			place()
 
 func place():

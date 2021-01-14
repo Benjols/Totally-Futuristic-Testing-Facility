@@ -7,9 +7,9 @@
 [ext_resource path="res://Materials/kenney_prototypetextures/PNG/Dark/texture_12.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Player/hands/floater selector.tscn" type="PackedScene" id=8]
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CylinderShape" id=1]
 radius = 1.5
-height = 3.0
+height = 6.0
 
 [node name="NewFPS" type="KinematicBody" groups=[
 "Player",
@@ -112,8 +112,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.86862, 0 )
 enabled = true
 cast_to = Vector3( 0, -1.5, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, -1.1921e-07, 0, 1.1921e-07, 1, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
