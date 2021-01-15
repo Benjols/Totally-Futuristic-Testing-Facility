@@ -35,7 +35,6 @@ onready var handloc = $Head/handLoc
 onready var saver = $"/root/GameSaving"
 
 onready var wallSprite = preload("res://Scenes/Player/abilities/WallSprite.tscn")
-onready var biggerWallSprite = preload("res://Scenes/Player/abilities/BiggerWallSprite.tscn")
 
 func _ready():
 	#Keeps mouse inside game window, so u have full range of motion when testing out game controller
@@ -111,12 +110,11 @@ func _physics_process(delta):
 	
 				
 func _process(delta):
+	blockPlacer()
 	#Weapon Sway
 	hand.global_transform.origin = handloc.global_transform.origin
 	hand.rotation.y = lerp_angle(hand.rotation.y, rotation.y, SWAY * delta)
 	hand.rotation.x = lerp_angle(hand.rotation.x, head.rotation.x, SWAY * delta)
-	
-	blockPlacer()
 	
 	if Input.is_action_just_pressed("escape"):
 		if paused == 0:
@@ -152,7 +150,6 @@ func _process(delta):
 		
 	speedrun.set_text(str(saver.m)+":"+str(saver.s)+":"+str(saver.ms))
 	
-	pointer.get_collision_normal()
 
 func _on_Pause_button_up():
 	paused = 0
@@ -168,28 +165,11 @@ func blockPlacer():
 	if saver.buildState == 0:
 		if Input.is_action_just_pressed("wall"):
 			saver.buildState = 1
-		if Input.is_action_just_pressed("biggerWall"):
-			saver.buildState = 2
 	elif saver.buildState == 1:
 		if !pointer.get_child(0):
 			var ws = wallSprite.instance()
 			pointer.add_child(ws)
 		if Input.is_action_just_pressed("wall"):
-			pointer.get_child(0).queue_free()
-			saver.buildState = 0
-		if Input.is_action_just_pressed("biggerWall"):
-			pointer.get_child(0).queue_free()
-			saver.buildState = 2
-		if Input.is_action_just_pressed("place") and saver.buildable:
-			place()
-	elif  saver.buildState == 2:
-		if !pointer.get_child(0):
-			var bWS = biggerWallSprite.instance()
-			pointer.add_child(bWS)
-		if Input.is_action_just_pressed("wall"):
-			pointer.get_child(0).queue_free()
-			saver.buildState = 1
-		if Input.is_action_just_pressed("biggerWall"):
 			pointer.get_child(0).queue_free()
 			saver.buildState = 0
 		if Input.is_action_just_pressed("place") and saver.buildable:

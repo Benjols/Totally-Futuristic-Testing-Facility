@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="FullPlayer" type="Spatial"]
+
+[node name="Movement" type="KinematicBody" parent="."]
+
+[node name="Head" type="Spatial" parent="Movement"]
+
+[node name="Wobble" type="Spatial" parent="."]

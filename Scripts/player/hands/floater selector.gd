@@ -1,6 +1,5 @@
 extends Spatial
 
-onready var bigWall = $animthing/bigWall
 onready var wall = $animthing/wall
 onready var saver = $"/root/GameSaving"
 
@@ -9,12 +8,9 @@ func _ready():
 
 func _process(_delta):
 	if saver.buildState == 0:
-		setbuilder(false, false)
+		setbuilder(false)
 	elif saver.buildState == 1:
-		setbuilder(true, false)
-	elif saver.buildState == 2:
-		setbuilder(false, true)
+		setbuilder(true)
 
-func setbuilder(Vwall, VbigWall):
+func setbuilder(Vwall):
 	wall.visible = Vwall
-	bigWall.visible = VbigWall
