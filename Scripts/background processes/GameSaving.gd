@@ -1,5 +1,7 @@
 extends Node
 
+var jumpState = false
+
 var counter = 0
 var ms = 0
 var s = 0

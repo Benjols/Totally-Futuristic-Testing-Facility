@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Materials/base levels/testing_mat.tres" type="Material" id=1]
 [ext_resource path="res://Scenes/Levels/cosmetics/SpotLight6.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player/NewFPS.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Player/abilities/BoingBlock.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 10, 2, 15 )
@@ -73,9 +72,6 @@ width = 10.0
 depth = 10.0
 material = ExtResource( 1 )
 
-[node name="NewFPS" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 3, 0 )
-
 [node name="lights" type="Spatial" parent="."]
 
 [node name="SpotLight9" parent="lights" instance=ExtResource( 2 )]
@@ -113,6 +109,5 @@ spot_range = 100.0
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 12, 2, 12 )
 spot_range = 100.0
 
-[node name="BoingBlock" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.73123, 3.66125, 1.07271 )
-physics_material_override = null
+[node name="NewFPS" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 2.1848, 0 )

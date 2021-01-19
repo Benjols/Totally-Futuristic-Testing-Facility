@@ -27,11 +27,21 @@ func blockRotation():
 	var normalx = raycast.get_collision_normal().x
 	var normalz = raycast.get_collision_normal().z
 	global_transform.origin = raycast.get_collision_point()
-	rotation.x = normalx * 1.57079642311
-	rotation.z = normalz * 1.57079642311
+	#rotation.x = normalx * 1.57079642311
+	#rotation.z = normalz * 1.57079642311
 	rotation_degrees.y = 90 + raycast_owner.rotation.y
 	visible = saver.buildable
+	Quat(Vector3(1, 0, 0), normalx).normalized()
+	Quat(Vector3(0, 0, 1), normalz).normalized()
 
+
+#func blockRotation(obj, point, axis, angle):
+	#var rot = angle + obj.rotation.x
+	#var tStart = point
+	#obj.global_translate(-tStart)
+	#obj.transform = obj.transform.rotated(axis, -rot)
+	#obj.global_translate(tStart)
+	
 func _on_Area_body_entered(body):
 	saver.buildable = false
 	
