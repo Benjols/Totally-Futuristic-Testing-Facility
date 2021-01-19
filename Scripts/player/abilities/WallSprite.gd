@@ -12,9 +12,9 @@ func _ready():
 func _input(_event):
 	pass
 
-func _process(delta):
+func _physics_process(delta):
 	blockRotation()
-	
+	checkVisibility()
 	if Input.is_action_just_pressed("place") and saver.buildable:
 		var w = wall.instance()
 		w.global_transform = global_transform
@@ -27,23 +27,17 @@ func blockRotation():
 	var normalx = raycast.get_collision_normal().x
 	var normalz = raycast.get_collision_normal().z
 	global_transform.origin = raycast.get_collision_point()
-	#rotation.x = normalx * 1.57079642311
-	#rotation.z = normalz * 1.57079642311
+	rotation.x = normalx * 1.57079642311
+	rotation.z = normalz * 1.57079642311
 	rotation_degrees.y = 90 + raycast_owner.rotation.y
-	visible = saver.buildable
-	Quat(Vector3(1, 0, 0), normalx).normalized()
-	Quat(Vector3(0, 0, 1), normalz).normalized()
-
-
-#func blockRotation(obj, point, axis, angle):
-	#var rot = angle + obj.rotation.x
-	#var tStart = point
-	#obj.global_translate(-tStart)
-	#obj.transform = obj.transform.rotated(axis, -rot)
-	#obj.global_translate(tStart)
+	#Quat(Vector3(1, 0, 0), normalx)
+	#Quat(Vector3(0, 0, 1), normalz)
 	
 func _on_Area_body_entered(body):
-	saver.buildable = false
+	saver.buildOverlap = false
 	
 func _on_Area_body_exited(body):
-	saver.buildable = true
+	saver.buildOverlap = true
+
+func checkVisibility():
+	visible = saver.buildable

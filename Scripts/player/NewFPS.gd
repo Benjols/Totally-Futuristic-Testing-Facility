@@ -34,8 +34,6 @@ onready var hand = $Head/hand
 onready var handloc = $Head/handLoc
 onready var saver = $"/root/GameSaving"
 
-onready var wallSprite = preload("res://Scenes/Player/abilities/WallSprite.tscn")
-
 func _ready():
 	#Keeps mouse inside game window, so u have full range of motion when testing out game controller
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -108,9 +106,9 @@ func _physics_process(delta):
 # warning-ignore:return_value_discarded
 	move_and_slide_with_snap(gravity_vec,Vector3.DOWN, Vector3.UP)
 	
-				
+	
 func _process(delta):
-	blockPlacer()
+	checkpoint()
 	#Weapon Sway
 	hand.global_transform.origin = handloc.global_transform.origin
 	hand.rotation.y = lerp_angle(hand.rotation.y, rotation.y, SWAY * delta)
@@ -141,6 +139,7 @@ func _process(delta):
 		mouse_sensitivity = 0
 		pauseMenu.visible = true
 		direction = 0
+	
 	if saver.ms > 9:
 		saver.s += 1
 		saver.ms = 0
@@ -161,21 +160,10 @@ func _on_MainMenu_button_up():
 func _on_Timer_timeout():
 	saver.ms += 1
 
-func blockPlacer():
-	if saver.buildState == 0:
-		if Input.is_action_just_pressed("wall"):
-			saver.buildState = 1
-	elif saver.buildState == 1:
-		if !pointer.get_child(0):
-			var ws = wallSprite.instance()
-			pointer.add_child(ws)
-		if Input.is_action_just_pressed("wall"):
-			pointer.get_child(0).queue_free()
-			saver.buildState = 0
-		if Input.is_action_just_pressed("place") and saver.buildable:
-			place()
-
-func place():
-	pointer.get_child(0).queue_free()
-	saver.buildState = 0
-	saver.counter += 1
+func checkpoint():
+	if saver.positionRequest == true:
+		saver.position = transform
+		saver.positionRequest = false
+	if saver.resetPosition == true:
+		transform = saver.position
+		saver.resetPosition = false

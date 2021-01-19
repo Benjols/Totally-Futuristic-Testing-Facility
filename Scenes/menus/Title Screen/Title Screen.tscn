@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Materials/base levels/testing_mat.tres" type="Material" id=2]
+[ext_resource path="res://Materials/base levels/surfaces/Non-buildable Surface.tres" type="Material" id=1]
 [ext_resource path="res://Scripts/menus/TitleScreen/Title Screen.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Misc/fps counter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/SIsilicon.3d.text/label_3d.gd" type="Script" id=5]
@@ -26,31 +26,31 @@ use_collision = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16 )
 width = 14.0
 height = 10.0
-material = ExtResource( 2 )
+material = ExtResource( 1 )
 
 [node name="CSGBox4" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 6, 23 )
 width = 14.0
 height = 14.0
-material = ExtResource( 2 )
+material = ExtResource( 1 )
 
 [node name="CSGBox6" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -6, 23 )
 width = 14.0
 height = 14.0
-material = ExtResource( 2 )
+material = ExtResource( 1 )
 
 [node name="CSGBox2" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8, 0, 22 )
 width = 14.0
 height = 14.0
-material = ExtResource( 2 )
+material = ExtResource( 1 )
 
 [node name="CSGBox3" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 0, 22 )
 width = 14.0
 height = 14.0
-material = ExtResource( 2 )
+material = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 29.245 )
