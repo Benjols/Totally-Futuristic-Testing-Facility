@@ -2,7 +2,7 @@ extends Spatial
 
 var state = 1
 
-onready var saver = get_node("/root/GameSaving")
+onready var saver = $"/root/GameSaving"
 onready var confirmLeave = $"Camera/Main/ConfirmLeave"
 
 func _ready():

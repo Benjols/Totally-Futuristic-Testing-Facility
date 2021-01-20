@@ -49,6 +49,7 @@ func _input(event):
 		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
 		#this sets the maximum that a character can rotate vertically
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
+		
 
 ### CHARACTER MOVEMENT ###
 func _physics_process(delta):
@@ -121,24 +122,17 @@ func _process(delta):
 			paused = 0
 			
 	if paused == 0:
+		print("not paused")
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		speed = 10
-		h_acceleration = 6
-		air_acceletaion = 1
-		normal_acceleration = 6
-		jump = 5
-		mouse_sensitivity = 0.1
+		for n in range(0,1,+.01):
+			Engine.time_scale = n
 		pauseMenu.visible = false
 	elif paused == 1:
+		print("paused")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		speed = 0
-		h_acceleration = 0
-		air_acceletaion = 0
-		normal_acceleration = 0
-		jump = 0
-		mouse_sensitivity = 0
+		for n in range(1,0,-.01):
+			Engine.time_scale = n
 		pauseMenu.visible = true
-		direction = 0
 	
 	if saver.ms > 9:
 		saver.s += 1

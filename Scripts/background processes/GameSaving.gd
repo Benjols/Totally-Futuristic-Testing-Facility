@@ -17,7 +17,7 @@ var positionRequest = false
 var position
 var resetPosition = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if buildableSurface and buildOverlap:
 		buildable = true
 	else:

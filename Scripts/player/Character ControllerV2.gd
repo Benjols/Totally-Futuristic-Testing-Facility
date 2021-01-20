@@ -21,7 +21,7 @@ func _input(event):
 		head.rotate_x(deg2rad(-event.relative.y * mouseSensivity))
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-87), deg2rad(80))
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	direction = Vector3()
 	
 	if Input.is_action_just_pressed("jump") and saver.jumpState:
