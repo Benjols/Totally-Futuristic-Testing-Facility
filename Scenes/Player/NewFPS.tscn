@@ -23,7 +23,7 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90805, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
-far = 600.0
+far = 300.0
 
 [node name="pointer" type="RayCast" parent="Head/Camera"]
 transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )

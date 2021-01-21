@@ -17,7 +17,7 @@ func _ready():
 	saver.m = 0
 
 func _on_Play_button_up():
-	get_tree().change_scene("res://Scenes/Levels/testLevel.tscn")
+	get_tree().change_scene("res://Scenes/Misc/precache.tscn")
 
 func _on_Graphics_Settings_button_up():
 	state = 2

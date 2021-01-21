@@ -1,6 +1,6 @@
 extends Node
 
-var vsync = true
+var vsync = false
 var fs = true
 var borderless = true
 var quality = "high"

@@ -122,13 +122,11 @@ func _process(delta):
 			paused = 0
 			
 	if paused == 0:
-		print("not paused")
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		for n in range(0,1,+.01):
 			Engine.time_scale = n
 		pauseMenu.visible = false
 	elif paused == 1:
-		print("paused")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		for n in range(1,0,-.01):
 			Engine.time_scale = n

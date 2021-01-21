@@ -25,7 +25,6 @@ func _physics_process(_delta):
 		saver.buildableSurface = false
 
 func place():
-	get_child(0).queue_free()
 	saver.buildState = 0
 	saver.counter += 1
 
