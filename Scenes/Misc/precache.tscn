@@ -57,6 +57,7 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
+visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
